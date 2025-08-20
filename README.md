@@ -41,4 +41,4 @@ x & x \geq 0
 for $-2^w-1 \leq x \leq 2^{w-1}-1$.
 
 - Unsigned to signed conversion:
-![u2t](https://quicklatex.com/cache3/80/ql_48015d3f6beabc190facd654d75a2c80_l3.png)
+![u2t](https://latex.codecogs.com/svg.image?\begin{cases}u&u\leq&space;2^{w-1}-1\\u-2^w&u>2^{w-1}-1\end{cases})
