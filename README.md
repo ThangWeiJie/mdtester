@@ -45,9 +45,34 @@ for $-2^w-1 \leq x \leq 2^{w-1}-1$.
 
 ## MERMAID
 ```mermaid
-sequenceDiagram
-    Alice->>+John: Hello John, how are you?
-    Alice->>+John: John, can you hear me?
-    John-->>-Alice: Hi Alice, I can hear you!
-    John-->>-Alice: I feel great!
+classDiagram
+direction BT
+class PayPalGateway {
+  + processPayment(double) void
+}
+class PayPalProcessor {
+  # createPaymentGateway() PaymentGateway
+}
+class PaymentGateway {
+<<Interface>>
+  + processPayment(double) void
+}
+class PaymentProcessor {
+  # createPaymentGateway() PaymentGateway
+  + executeTransaction(double) void
+}
+class Solution {
+  + main(String[]) void
+}
+class StripeGateway {
+  + processPayment(double) void
+}
+class StripeProcessor {
+  # createPaymentGateway() PaymentGateway
+}
+
+PayPalGateway  ..>  PaymentGateway 
+PayPalProcessor  -->  PaymentProcessor 
+StripeGateway  ..>  PaymentGateway 
+StripeProcessor  -->  PaymentProcessor
 ```
