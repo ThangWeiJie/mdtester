@@ -46,71 +46,15 @@ for $-2^w-1 \leq x \leq 2^{w-1}-1$.
 ## MERMAID
 
 ```mermaid
+ui.mermaid('''
 ---
+title: Hello Title
 config:
-  look: neo
-  theme: mc
-  layout: elk
+  theme: base
+  themeVariables:
+    primaryColor: "#00ff00"
 ---
-classDiagram
-direction TB
-    class DocumentFactory {
-	    + createRenderer() Renderer
-	    + createFont() Font
-    }
-
-    class DocumentGenerator {
-	    + generate(String) void
-    }
-
-    class Font {
-	    + apply() void
-    }
-
-    class HTMLDocumentFactory {
-	    + createFont() Font
-	    + createRenderer() Renderer
-    }
-
-    class HTMLFont {
-	    + apply() void
-    }
-
-    class HTMLRenderer {
-	    + renderText(String) void
-    }
-
-    class PdfDocumentFactory {
-	    + createRenderer() Renderer
-	    + createFont() Font
-    }
-
-    class PdfFont {
-	    + apply() void
-    }
-
-    class PdfRenderer {
-	    + renderText(String) void
-    }
-
-    class Renderer {
-	    + renderText(String) void
-    }
-
-	<<Interface>> DocumentFactory
-	<<Interface>> Font
-	<<Interface>> Renderer
-
-    DocumentGenerator "1" *--> "font 1" Font
-    DocumentGenerator "1" *--> "renderer 1" Renderer
-    HTMLDocumentFactory ..> DocumentFactory
-    HTMLDocumentFactory ..> HTMLFont : «create»
-    HTMLDocumentFactory ..> HTMLRenderer : «create»
-    HTMLFont ..> Font
-    HTMLRenderer ..> Renderer
-    PdfDocumentFactory ..> DocumentFactory
-    PdfDocumentFactory ..> PdfFont : «create»
-    PdfDocumentFactory ..> PdfRenderer : «create»
-    PdfFont ..> Font
-    PdfRenderer ..> Renderer
+flowchart
+	Hello --> World
+''')
 ```
