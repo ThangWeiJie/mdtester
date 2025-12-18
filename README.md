@@ -47,32 +47,54 @@ for $-2^w-1 \leq x \leq 2^{w-1}-1$.
 ```mermaid
 classDiagram
 direction BT
-class PayPalGateway {
-  + processPayment(double) void
-}
-class PayPalProcessor {
-  # createPaymentGateway() PaymentGateway
-}
-class PaymentGateway {
+class DocumentFactory {
 <<Interface>>
-  + processPayment(double) void
+  + createRenderer() Renderer
+  + createFont() Font
 }
-class PaymentProcessor {
-  # createPaymentGateway() PaymentGateway
-  + executeTransaction(double) void
+class DocumentGenerator {
+  + generate(String) void
 }
-class Solution {
-  + main(String[]) void
+class Font {
+<<Interface>>
+  + apply() void
 }
-class StripeGateway {
-  + processPayment(double) void
+class HTMLDocumentFactory {
+  + createFont() Font
+  + createRenderer() Renderer
 }
-class StripeProcessor {
-  # createPaymentGateway() PaymentGateway
+class HTMLFont {
+  + apply() void
+}
+class HTMLRenderer {
+  + renderText(String) void
+}
+class PdfDocumentFactory {
+  + createRenderer() Renderer
+  + createFont() Font
+}
+class PdfFont {
+  + apply() void
+}
+class PdfRenderer {
+  + renderText(String) void
+}
+class Renderer {
+<<Interface>>
+  + renderText(String) void
 }
 
-PayPalGateway  ..>  PaymentGateway 
-PayPalProcessor  -->  PaymentProcessor 
-StripeGateway  ..>  PaymentGateway 
-StripeProcessor  -->  PaymentProcessor
+DocumentGenerator "1" *--> "font 1" Font 
+DocumentGenerator "1" *--> "renderer 1" Renderer 
+HTMLDocumentFactory  ..>  DocumentFactory 
+HTMLDocumentFactory  ..>  HTMLFont : «create»
+HTMLDocumentFactory  ..>  HTMLRenderer : «create»
+HTMLFont  ..>  Font 
+HTMLRenderer  ..>  Renderer 
+PdfDocumentFactory  ..>  DocumentFactory 
+PdfDocumentFactory  ..>  PdfFont : «create»
+PdfDocumentFactory  ..>  PdfRenderer : «create»
+PdfFont  ..>  Font 
+PdfRenderer  ..>  Renderer 
+
 ```
