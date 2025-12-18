@@ -46,6 +46,10 @@ for $-2^w-1 \leq x \leq 2^{w-1}-1$.
 ## MERMAID
 
 ```mermaid
+---
+config:
+  layout: elk
+---
 classDiagram
 direction TB
 class DocumentFactory {
